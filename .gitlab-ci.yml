@@ -6,8 +6,8 @@ build-job:
   stage: build
   script:
     - go mod tidy
-	  - go vet ./...
-	  - go build -o bin/ci_example main.go
+    - go vet ./...
+    - go build -o bin/ci_example main.go
 
 test-job:
   stage: test
