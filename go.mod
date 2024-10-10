@@ -1,3 +1,3 @@
-module landui.com/ci-example
+module bitizen.com/ci-example
 
 go 1.20

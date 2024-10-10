@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 
-	"landui.com/ci-example/utils"
+	"bitizen.com/ci-example/utils"
 )
 
 const (
