@@ -43,6 +43,8 @@ jobs:
 
       - name: Run Integration Tests
         run: |
+          go build -o ci_mock_server ./tests/mock_server/main.go
+          ./ci_mock_server &
           ./ci_example &
           sleep 3
           go test -v ./tests
