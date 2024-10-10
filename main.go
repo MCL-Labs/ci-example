@@ -45,7 +45,7 @@ func getOp(url string) (string, error) {
 
 func main() {
 	// Call the function
-	fmt.Println("Hello, World!")
+	fmt.Println("Starting API Server")
 
 	go func() {
 		http.HandleFunc("/api/get", func(w http.ResponseWriter, r *http.Request) {
