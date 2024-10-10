@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	URLEndPoint = "http://127.0.01:8080"
+	URLEndPoint = "http://127.0.0.1:8080"
 )
 
 func TestAPIGet(t *testing.T) {
