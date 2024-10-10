@@ -8,8 +8,14 @@ build-job:
     - go mod tidy
     - go vet ./...
     - go build -o bin/ci_example main.go
+  only:
+    - master
+    - merge_requests
 
 test-job:
   stage: test
   script:
     - go test -v ./...
+  only:
+    - master
+    - merge_requests
