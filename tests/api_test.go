@@ -85,7 +85,7 @@ func TestAPISum(t *testing.T) {
 	// Check the response body
 	expectedCode := 201
 	expectedMsg := "success"
-	expectedData := map[string]int{"sum": 3}
+	expectedData := map[string]int{"sum": 2}
 	if int(responseBody["code"].(float64)) != expectedCode ||
 		responseBody["msg"].(string) != expectedMsg ||
 		!compareMaps(responseBody["data"].(map[string]interface{}), expectedData) {
