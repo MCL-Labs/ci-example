@@ -24,7 +24,7 @@ sudo gitlab-runner start
 
 
 # Register the Runner
-gitlab-runner register  --url http://gitlab.landui.cn  --token glrt-4ugeFzsf2WcnRwtkeWNf
+gitlab-runner register  --url http://gitlab.bitizen.cn  --token klrt-5ugeFzsf2WcnRwtkeWNf
 
 # Runtime platform                                    arch=amd64 os=linux pid=354049 revision=b92ee590 version=17.4.0
 # WARNING: Running in user-mode.
@@ -34,7 +34,7 @@ gitlab-runner register  --url http://gitlab.landui.cn  --token glrt-4ugeFzsf2Wcn
 # WARNING: $ sudo gitlab-runner...
 
 # Enter the GitLab instance URL (for example, https://gitlab.com/):
-# [http://gitlab.landui.cn]: https://gitlab.landui.cn/
+# [http://gitlab.bitizen.cn]: https://gitlab.bitizen.cn
 # Verifying runner... is valid                        runner=4ugeFzsf2
 # Enter a name for the runner. This is stored only in the local config.toml file:
 # [MathxH]: MathxH
