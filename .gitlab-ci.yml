@@ -1,21 +1,36 @@
 stages:
   - build
-  - test
+  - unit_test
+  - integration_test
 
 build-job:
   stage: build
   script:
     - go mod tidy
     - go vet ./...
-    - go build -o bin/ci_example main.go
+    - go build -o ci_example main.go
   only:
     - master
     - merge_requests
 
-test-job:
-  stage: test
+unit-test-job:
+  stage: unit_test
   script:
-    - go test -v ./...
+    - EXCLUDE_DIRS="tests"
+    - TEST_DIRS=$(go list ./... | grep -vE $(echo $EXCLUDE_DIRS | sed 's/ /|/g'))
+    - go test -v $TEST_DIRS
+  only:
+    - master
+    - merge_requests
+
+integration-test-job:
+  stage: integration_test
+  script:
+    - go build -o ci_mock_server tests/mock_server/main.go
+    - ./ci_mock_server &
+    - ./ci_example &
+    - sleep 3
+    - go test -v ./tests
   only:
     - master
     - merge_requests
