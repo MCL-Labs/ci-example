@@ -25,10 +25,16 @@ jobs:
         run: |
           go mod tidy
           go vet ./...
-          go build -o bin/ci_example main.go
+          go build -o ci_example main.go
 
       - name: Run Unit Tests
         run: |
           EXCLUDE_DIRS="tests"
           TEST_DIRS=$(go list ./... | grep -vE $(echo $EXCLUDE_DIRS | sed 's/ /|/g'))
           go test -v $TEST_DIRS
+
+      - name: Run Integration Tests
+        run: |
+          ./ci_example &
+          sleep 3
+          go test -v ./tests

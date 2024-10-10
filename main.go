@@ -21,7 +21,7 @@ func main() {
 			}
 
 			response := map[string]interface{}{
-				"code": 200,
+				"code": 201,
 				"msg":  "Hello, World",
 			}
 			w.Header().Set("Content-Type", "application/json")
@@ -51,7 +51,7 @@ func main() {
 
 			// Create the response
 			response := map[string]interface{}{
-				"code": 200,
+				"code": 201,
 				"msg":  "success",
 				"data": map[string]int{
 					"sum": sum,
