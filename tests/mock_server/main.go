@@ -22,7 +22,7 @@ func main() {
 			//rand.Seed(time.Now().UnixNano())
 
 			// Randomly select "sub" or "add"
-			op := "sub"
+			op := "add"
 			// if rand.Intn(2) == 0 {
 			// 	op = "add"
 			// }
