@@ -4,11 +4,11 @@ stages:
   - integration_test
 
 
-variables:
-  GIT_STRATEGY: none  # Disable automatic Git clone
+# variables:
+#   GIT_STRATEGY: none  # Disable automatic Git clone
 
-before_script:
-  - rm -rf /home/gitlab-runner/builds/*
+# before_script:
+#   - rm -rf /home/gitlab-runner/builds/*
 
 build-job:
   stage: build
