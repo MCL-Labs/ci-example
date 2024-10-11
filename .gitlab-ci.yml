@@ -3,6 +3,13 @@ stages:
   - unit_test
   - integration_test
 
+
+variables:
+  GIT_STRATEGY: none  # Disable automatic Git clone
+
+before_script:
+  - rm -rf /home/gitlab-runner/builds/*
+
 build-job:
   stage: build
   script:
