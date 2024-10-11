@@ -4,13 +4,13 @@ stages:
   - integration_test
 
 
-variables:
-  GIT_STRATEGY: none  # Disable automatic Git clone
+# variables:
+#   GIT_STRATEGY: none  # Disable automatic Git clone
 
-before_script:
-  - rm -rf /home/gitlab-runner/builds/*
-  - pkill -f ci_example
-  - pkill -f ci_mock_server
+# before_script:
+#   - rm -rf /home/gitlab-runner/builds/*
+#   - pkill -f ci_example
+#   - pkill -f ci_mock_server
 
 build-job:
   stage: build
