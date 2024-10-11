@@ -43,7 +43,7 @@ func getOp(url string) (string, error) {
 	return responseBody["data"].(map[string]interface{})["op"].(string), nil
 }
 
-func main() {
+func sain() {
 	// Call the function
 	fmt.Println("Starting API Server")
 
