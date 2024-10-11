@@ -18,7 +18,7 @@ build-job:
     - go build -o ci_example main.go
   after_script:
     - rm -rf $(pwd)/*
-    - rm -rf $(pwd)/.*
+    - rm -rf $(pwd)/.git*
   only:
     - master
     - merge_requests
@@ -32,7 +32,7 @@ unit-test-job:
     - go test -v $TEST_DIRS
   after_script:
     - rm -rf $(pwd)/*
-    - rm -rf $(pwd)/.*
+    - rm -rf $(pwd)/.git*
   only:
     - master
     - merge_requests
@@ -42,13 +42,14 @@ integration-test-job:
   needs: ["unit-test-job"]
   script:
     - go build -o ci_mock_server tests/mock_server/main.go
+    - go build -o ci_example main.go
     - ./ci_mock_server &
     - ./ci_example &
     - sleep 3
     - go test -v ./tests
   after_script:
     - rm -rf $(pwd)/*
-    - rm -rf $(pwd)/.*
+    - rm -rf $(pwd)/.git*
   only:
     - master
     - merge_requests
