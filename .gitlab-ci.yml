@@ -3,10 +3,15 @@ stages:
   - unit_test
   - integration_test
 
+variables:
+  GIT_STRATEGY: none  # Disable automatic Git clone
+
+before_script:
+  - rm -rf $(pwd)
+  - git clone $CI_REPOSITORY_URL .
+
 build-job:
   stage: build
-  before_script:
-    - rm -rf $(pwd)
   script:
     - go mod tidy
     - go vet ./...
