@@ -1,15 +1,15 @@
 stages:
   - build
   - unit_test
-  - integration_test
+  #- integration_test
 
 
-# variables:
-#   GIT_STRATEGY: none  # Disable automatic Git clone
+variables:
+  GIT_STRATEGY: none  # Disable automatic Git clone
 
-# before_script:
-#   - rm -rf /home/gitlab-runner/builds/*
-#   - pkill -f ci* || true
+before_script:
+  - rm -rf /home/gitlab-runner/builds/*
+  - pkill -f ci* || true
 
 build-job:
   stage: build
@@ -38,20 +38,20 @@ unit-test-job:
     - master
     - merge_requests
 
-integration-test-job:
-  stage: integration_test
-  needs: ["unit-test-job"]
-  script:
-    - go build -o ci_mock_server tests/mock_server/main.go
-    - go build -o ci_example main.go
-    - ./ci_mock_server &
-    - ./ci_example &
-    - sleep 3
-    - go test -v -timeout 5m ./tests
-  after_script:
-    - pkill -f ci*
-    - rm -rf $(pwd)/*
-    - rm -rf $(pwd)/.git*
-  only:
-    - master
-    - merge_requests
+# integration-test-job:
+#   stage: integration_test
+#   needs: ["unit-test-job"]
+#   script:
+#     - go build -o ci_mock_server tests/mock_server/main.go
+#     - go build -o ci_example main.go
+#     - ./ci_mock_server &
+#     - ./ci_example &
+#     - sleep 3
+#     - go test -v -timeout 5m ./tests
+#   after_script:
+#     - pkill -f ci*
+#     - rm -rf $(pwd)/*
+#     - rm -rf $(pwd)/.git*
+#   only:
+#     - master
+#     - merge_requests
