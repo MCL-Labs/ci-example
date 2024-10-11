@@ -4,11 +4,11 @@ stages:
   - integration_test
 
 
-variables:
-  GIT_STRATEGY: none  # Disable automatic Git clone
+# variables:
+#   GIT_STRATEGY: none  # Disable automatic Git clone
 
-before_script:
-  - rm -rf /home/gitlab-runner/builds/*
+# before_script:
+#   - rm -rf /home/gitlab-runner/builds/*
 
 build-job:
   stage: build
@@ -29,7 +29,7 @@ unit-test-job:
   script:
     - EXCLUDE_DIRS="tests"
     - TEST_DIRS=$(go list ./... | grep -vE $(echo $EXCLUDE_DIRS | sed 's/ /|/g'))
-    - go test -v $TEST_DIRS
+    - go test -v -timeout 2m $TEST_DIRS
   after_script:
     - rm -rf $(pwd)/*
     - rm -rf $(pwd)/.git*
@@ -46,7 +46,7 @@ integration-test-job:
     - ./ci_mock_server &
     - ./ci_example &
     - sleep 3
-    - go test -v ./tests
+    - go test -v -timeout 5m ./tests
   after_script:
     - rm -rf $(pwd)/*
     - rm -rf $(pwd)/.git*
