@@ -4,11 +4,11 @@ stages:
   - integration_test
 
 
-# variables:
-#   GIT_STRATEGY: none  # Disable automatic Git clone
+variables:
+  GIT_STRATEGY: none  # Disable automatic Git clone
 
-# before_script:
-#   - rm -rf /home/gitlab-runner/builds/*
+before_script:
+  - rm -rf /home/gitlab-runner/builds/*
 
 build-job:
   stage: build
@@ -17,10 +17,8 @@ build-job:
     - go vet ./...
     - go build -o ci_example main.go
   after_script:
-    - echo "current $pwd"
     - rm -rf $(pwd)/*
-    - echo "deleted"
-    - ls -al $(pwd)
+    - rm -rf $(pwd)/.*
   only:
     - master
     - merge_requests
@@ -34,6 +32,7 @@ unit-test-job:
     - go test -v $TEST_DIRS
   after_script:
     - rm -rf $(pwd)/*
+    - rm -rf $(pwd)/.*
   only:
     - master
     - merge_requests
@@ -49,6 +48,7 @@ integration-test-job:
     - go test -v ./tests
   after_script:
     - rm -rf $(pwd)/*
+    - rm -rf $(pwd)/.*
   only:
     - master
     - merge_requests
