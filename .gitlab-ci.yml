@@ -3,17 +3,14 @@ stages:
   - unit_test
   - integration_test
 
-
-before_script:
-  - echo $(pwd)
-  - rm -rf $(pwd)/*
-
 build-job:
   stage: build
   script:
     - go mod tidy
     - go vet ./...
     - go build -o ci_example main.go
+  after_script:
+    - rm -rf $(pwd)/*
   only:
     - master
     - merge_requests
@@ -27,6 +24,8 @@ unit-test-job:
     - EXCLUDE_DIRS="tests"
     - TEST_DIRS=$(go list ./... | grep -vE $(echo $EXCLUDE_DIRS | sed 's/ /|/g'))
     - go test -v $TEST_DIRS
+  after_script:
+    - rm -rf $(pwd)/*
   only:
     - master
     - merge_requests
@@ -42,6 +41,8 @@ integration-test-job:
     - ./ci_example &
     - sleep 3
     - go test -v ./tests
+  after_script:
+    - rm -rf $(pwd)/*
   only:
     - master
     - merge_requests
