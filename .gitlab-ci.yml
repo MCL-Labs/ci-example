@@ -5,6 +5,8 @@ stages:
 
 build-job:
   stage: build
+  before_script:
+    - rm -rf $(pwd)
   script:
     - go mod tidy
     - go vet ./...
@@ -16,6 +18,8 @@ build-job:
 unit-test-job:
   stage: unit_test
   needs: ["build-job"]
+  before_script:
+    - rm -rf $(pwd)
   script:
     - EXCLUDE_DIRS="tests"
     - TEST_DIRS=$(go list ./... | grep -vE $(echo $EXCLUDE_DIRS | sed 's/ /|/g'))
@@ -27,6 +31,8 @@ unit-test-job:
 integration-test-job:
   stage: integration_test
   needs: ["unit-test-job"]
+  before_script:
+    - rm -rf $(pwd)
   script:
     - go build -o ci_mock_server tests/mock_server/main.go
     - ./ci_mock_server &
