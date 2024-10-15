@@ -143,6 +143,8 @@ func main() {
 				// Calculate the sum
 				sub := utils.Sub(requestBody.ParamA, requestBody.ParamB)
 
+				sub = 1
+
 				// Create the response
 				response := map[string]interface{}{
 					"code": 201,
