@@ -50,7 +50,7 @@ func main() {
 	go func() {
 		http.HandleFunc("/api/get", func(w http.ResponseWriter, r *http.Request) {
 			if r.Method != http.MethodGet {
-				http.ErrorF(w, "Invalid request method", http.StatusMethodNotAllowed)
+				http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
 				return
 			}
 
